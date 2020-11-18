@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
-enum NFT_Types {
+export enum NFT_Types {
   VIDEO = "VIDEO",
   IMAGE = "IMAGE",
   REDEEMABLE = "REDEEMABLE",
@@ -14,7 +14,7 @@ export class NFT {
   @Column()
   img: string;
 
-  @Column()
+  @Column({ default: null, nullable: true })
   imgSmall: string;
 
   @Column()
@@ -32,8 +32,8 @@ export class NFT {
   @Column()
   redeemable: boolean;
 
-  @Column()
-  keywords: boolean;
+  @Column("simple-array")
+  keywords: string[];
 
   @Column({
     type: "enum",
