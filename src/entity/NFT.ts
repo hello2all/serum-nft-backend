@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
-import { IsNotEmpty, IsInt, IsUrl, IsBoolean, IsArray, IsEnum } from "class-validator";
+import { IsNotEmpty, IsInt, IsUrl, IsBoolean, IsArray, IsEnum, IsString } from "class-validator";
 
 export enum NFT_Types {
   VIDEO = "VIDEO",
@@ -53,6 +53,5 @@ export class NFT {
   type: NFT_Types;
 
   @Column({ default: null, nullable: true })
-  @IsBoolean()
   redeemAddress: string;
 }

@@ -73,9 +73,9 @@ const createServer = async () => {
       condition.marketAddress = query.marketAddress
         ? Like("%" + query.marketAddress + "%")
         : Like("%");
-      condition.redeemAddress = query.redeemAddress
-        ? Like("%" + query.redeemAddress + "%")
-        : Like("%");
+      if (query.redeemAddress) {
+        condition.redeemAddress = Like("%" + query.redeemAddress + "%");
+      }
       if (query.type) {
         condition.type = NFT_Types[query.type.toString()];
       }
@@ -110,10 +110,11 @@ const createServer = async () => {
         nft.mintAddress = body.mintAddress;
         if (body.redeemable) {
           nft.redeemAddress = body.redeemAddress;
-          nft.redeemable = body.redeemable;
         }
+        nft.redeemable = body.redeemable;
         nft.supply = body.supply;
         nft.type = NFT_Types[body.type];
+        nft.imgSmall = body.imgSmall ? body.imgSmall : null;
 
         const errors = await validate(nft);
         if (errors.length > 0) {

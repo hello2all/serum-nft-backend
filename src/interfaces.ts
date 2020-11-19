@@ -9,5 +9,6 @@ export interface NFTReq {
   redeemable: boolean;
   keywords: string[];
   type: NFT_Types;
+  imgSmall?: string;
   redeemAddress?: string;
 }
