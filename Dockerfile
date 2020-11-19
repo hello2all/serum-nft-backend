@@ -4,7 +4,6 @@ WORKDIR /serum-nft-backend
 
 COPY . .
 
-RUN npm i -g yarn
 RUN yarn install --production
 RUN yarn build
 
