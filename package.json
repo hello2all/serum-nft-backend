@@ -10,7 +10,10 @@
       "typescript": "3.3.3333"
    },
    "dependencies": {
+      "class-validator": "^0.12.2",
       "express": "^4.17.1",
+      "passport": "^0.4.1",
+      "passport-headerapikey": "^1.2.2",
       "pg": "^8.4.0",
       "reflect-metadata": "^0.1.10",
       "typeorm": "0.2.29"
