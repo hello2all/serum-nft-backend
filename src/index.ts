@@ -10,6 +10,7 @@ import { NFTReq } from "./interfaces";
 const NODE_ENV = process.env.NODE_ENV;
 const API_KEY = process.env.API_KEY;
 const DATABASE_URL = process.env.DATABASE_URL;
+const PORT = process.env.PORT || 5000;
 
 passport.use(
   new HeaderAPIKeyStrategy(
@@ -159,7 +160,7 @@ const createServer = async () => {
       }
     );
 
-    app.listen(8000);
+    app.listen(PORT);
   } catch (error) {
     console.log(error);
   }

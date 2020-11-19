@@ -10,7 +10,7 @@ RUN yarn build
 
 ENV NODE_ENV production
 
-EXPOSE 8000
+EXPOSE 5000
 
 CMD ["node", "build/index.js"]
 USER node
