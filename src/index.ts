@@ -7,7 +7,7 @@ import * as passport from "passport";
 import HeaderAPIKeyStrategy from "passport-headerapikey";
 import { NFTReq } from "./interfaces";
 
-const ENV = process.env.ENV;
+const NODE_ENV = process.env.NODE_ENV;
 const API_KEY = process.env.API_KEY;
 const DATABASE_URL = process.env.DATABASE_URL;
 
@@ -26,9 +26,9 @@ passport.use(
 );
 
 const createTypeormConn = async () => {
-  const env = ENV == "production" ? ENV : "development";
+  const env = NODE_ENV == "production" ? NODE_ENV : "development";
   const connectionOptions = await getConnectionOptions(env);
-  return ENV == "production"
+  return env == "production"
     ? createConnection({
         ...connectionOptions,
         url: DATABASE_URL,
