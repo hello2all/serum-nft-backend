@@ -5,6 +5,7 @@ WORKDIR /serum-nft-backend
 COPY . .
 
 RUN yarn install --production
+RUN yarn global add typescript
 RUN yarn build
 
 ENV NODE_ENV production
