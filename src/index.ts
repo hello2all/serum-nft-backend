@@ -6,11 +6,23 @@ import { validate } from "class-validator";
 import * as passport from "passport";
 import HeaderAPIKeyStrategy from "passport-headerapikey";
 import { NFTReq } from "./interfaces";
+import * as cors from "cors";
 
 const NODE_ENV = process.env.NODE_ENV;
 const API_KEY = process.env.API_KEY;
 const DATABASE_URL = process.env.DATABASE_URL;
 const PORT = process.env.PORT || 5000;
+
+const corsOptions: cors.CorsOptions = {
+  allowedHeaders: [
+    'Origin',
+    'X-Requested-With',
+    'Content-Type',
+    'Accept',
+    'X-Access-Token',
+    'Authorization',
+  ],
+}
 
 passport.use(
   new HeaderAPIKeyStrategy(
@@ -49,6 +61,7 @@ const createServer = async () => {
 
     const app = express();
     app.use(express.json());
+    app.use(cors(corsOptions));
 
     app.get("/", async (req: Request, res: Response) => {
       res.send("Solible API");
