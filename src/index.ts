@@ -109,10 +109,6 @@ const createServer = async () => {
 
     app.post(
       "/nft",
-      passport.authenticate("headerapikey", {
-        session: false,
-        failureRedirect: "/unauthorized",
-      }),
       async (req: Request, res: Response) => {
         let nft = new NFT();
         let body: NFTReq = req.body;
