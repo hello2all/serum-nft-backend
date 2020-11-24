@@ -1,4 +1,4 @@
-import { Any, createConnection, getConnectionOptions, Like } from "typeorm";
+import { createConnection, getConnectionOptions, Like, In } from "typeorm";
 import { NFT, NFT_Types } from "./entity/NFT";
 import * as express from "express";
 import { Request, Response } from "express";
@@ -80,14 +80,14 @@ const createServer = async () => {
       let take = query.take ? query.take : 50;
       let skip = query.skip ? query.skip : 0;
       condition.name = query.name ? Like("%" + query.name + "%") : Like("%");
-      condition.mintAddress = query.mintAddress
-        ? Like("%" + query.mintAddress + "%")
-        : Like("%");
-      condition.marketAddress = query.marketAddress
-        ? Like("%" + query.marketAddress + "%")
-        : Like("%");
+      if (query.mintAddress) {
+        condition.mintAddress = Array.isArray(query.mintAddress) ? In(<string[]>query.mintAddress) : query.mintAddress; 
+      }
+      if (query.marketAddress) {
+        condition.marketAddress = Array.isArray(query.marketAddress) ? In(<string[]>query.marketAddress) : query.marketAddress;
+      }
       if (query.redeemAddress) {
-        condition.redeemAddress = Like("%" + query.redeemAddress + "%");
+        condition.redeemAddress = Array.isArray(condition.redeemAddress) ? In(<string[]>query.redeemAddress) : query.redeemAddress;
       }
       if (query.type) {
         condition.type = NFT_Types[query.type.toString()];
