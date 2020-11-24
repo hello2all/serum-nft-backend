@@ -1,4 +1,4 @@
-import { createConnection, getConnectionOptions, Like, In } from "typeorm";
+import { createConnection, getConnectionOptions, ILike, In } from "typeorm";
 import { NFT, NFT_Types } from "./entity/NFT";
 import { Market } from "./entity/Market";
 import * as express from "express";
@@ -81,7 +81,7 @@ const createServer = async () => {
       }
       let take = query.take ? query.take : 50;
       let skip = query.skip ? query.skip : 0;
-      condition.name = query.name ? Like("%" + query.name + "%") : Like("%");
+      condition.name = query.name ? ILike("%" + query.name + "%") : ILike("%");
       if (query.mintAddress) {
         condition.mintAddress = Array.isArray(query.mintAddress)
           ? In(<string[]>query.mintAddress)
@@ -183,7 +183,7 @@ const createServer = async () => {
       }
       let take = query.take ? query.take : 50;
       let skip = query.skip ? query.skip : 0;
-      condition.name = query.name ? Like("%" + query.name + "%") : Like("%");
+      condition.name = query.name ? ILike("%" + query.name + "%") : ILike("%");
       if (query.address) {
         condition.address = Array.isArray(query.address)
           ? In(<string[]>query.address)
