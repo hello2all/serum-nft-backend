@@ -1,6 +1,6 @@
 import { NFT_Types } from "./entity/NFT";
 
-export interface NFTReq {
+export interface NFTPostReq {
   img: string;
   name: string;
   supply: number;
@@ -11,4 +11,11 @@ export interface NFTReq {
   type: NFT_Types;
   imgSmall?: string;
   redeemAddress?: string;
+}
+
+export interface MarketPostReq {
+  name: string;
+  address: string;
+  programId: string;
+  deprecated: boolean;
 }
