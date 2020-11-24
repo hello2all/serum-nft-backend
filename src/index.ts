@@ -114,6 +114,7 @@ const createServer = async () => {
         let body: NFTReq = req.body;
         nft.name = body.name;
         nft.img = body.img;
+        nft.imgSmall = body.img;
         nft.keywords = body.keywords;
         nft.marketAddress = body.marketAddress;
         nft.mintAddress = body.mintAddress;
@@ -123,7 +124,6 @@ const createServer = async () => {
         nft.redeemable = body.redeemable;
         nft.supply = body.supply;
         nft.type = NFT_Types[body.type];
-        nft.imgSmall = body.imgSmall ? body.imgSmall : null;
 
         const errors = await validate(nft);
         if (errors.length > 0) {
